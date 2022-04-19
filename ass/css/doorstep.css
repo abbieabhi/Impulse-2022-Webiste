@@ -1,0 +1,352 @@
+@font-face{
+	font-family: lightPara;
+	src:url(../../fonts/lightparagraph.otf);
+}
+@font-face{
+	font-family: geoMentry;
+	src:url(../../fonts/Gilroy-ExtraBold.otf);
+}
+@font-face{
+	font-family: barBold;
+	src:url(../../fonts/Barlow-Bold.otf);
+}
+::selection {
+	background:rgba(135, 236, 245,0.3);
+	color: inherit;
+}
+html,body{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;left: 0;
+	margin: 0;
+	overflow-x: hidden;
+	z-index: -100;
+}
+html{
+	background-image: url(../../imgs/light-bulb-1246043.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+body{
+	background: linear-gradient(135deg, rgba(20,20,20,0.7) 30%,transparent);
+}
+body::-webkit-scrollbar {
+    width: 0.9rem;
+}
+ 
+body::-webkit-scrollbar-track {
+    background: #fefafe;
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,1);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg,#ff8a00,#da1b60);
+  -webkit-box-shadow: inset 0 0 5px rgba(20,20,20,1);
+  border-radius:10px;
+}
+body .sls-header{
+	position: relative;
+	display: flex;
+	width: 100vw;
+	height: auto;
+	top: 0;/*
+	border-bottom: 0.8px solid #777;*/
+	margin-bottom: 1rem;
+	z-index: 1;
+}
+body .sls-header .sls-col-logo{
+	width: auto;
+	height: 60px;
+	background: transparent;
+	margin-left: 5vw;
+}
+body .sls-header .sls-col-logo img{
+	height: 60px;
+}
+body .sls-header .sls-col-name{
+	width: 500px;
+	height: auto;
+	padding-left: 15px;
+	padding-top: 8px;
+	font-size: 2.75em;
+	letter-spacing: 1.5px;
+	font-weight: bolder;
+	color: #cfcfcf;
+	line-height:1em;
+	font-family: calibri;
+	cursor: context-menu;
+}
+body .sls-header .sls-home{
+	font-family: 'Lato', sans-serif;
+	font-size: 1.8rem;
+	position: absolute;
+	font-weight: bold;
+	display: flex;
+	width: 100px;
+	right: 3rem;
+	padding-top: 5px;
+	color: #fee;
+}
+body .sls-header .fa-home{
+	font-size: 1.2rem;
+	padding-top: 0.6rem;
+}
+body .sls-signup{
+	position: relative;
+	display: inline-block;
+	text-align: left;
+	margin-left: 10vw;
+	z-index: 1;
+}
+body .sls-signup .signup-name{
+	font-size: 2rem;
+	background: linear-gradient(to right,#fc0317,#fc0317,#ff8a00,#ff8a00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+	font-family: geoMentry;
+	letter-spacing: 3px;
+	text-align: center;
+}
+body .sls-signup .sls-name{
+	margin: 10px 20px;
+	margin-bottom: 0px;
+	width: 350px;
+	padding: 8px 3px 8px 30px;
+	font-size: 0.9rem;
+	letter-spacing: 2px;
+	color: white;
+	border: 2px solid rgba(230,230,230,0.7);
+	border-radius: 5px;
+	background-color: transparent;
+	transition: border 200ms ease-out;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.9);
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color: rgba(255, 255, 255, 0.9);
+}
+body .sls-signup .sls-name:focus,body .sls-signup input[type="submit"]:focus {
+   color: rgba(255, 255, 255, 1);
+   border: 2px solid rgba(255, 255, 255, 1);
+   outline:none;
+}
+body .sls-signup input[type="submit"]{
+	border: none;
+	background: linear-gradient(to top left,#ff8a00,#da1b60);
+	padding:10.5px 25px 8px; 
+	text-align: center;
+	border-radius: 20px;
+	font-size: 1rem;
+	font-weight: bold;
+	color: #feddcc;
+	text-shadow: 0px 0px 4px black;
+	box-shadow: -2px 2px 20px 2px rgba(200,200,255,0.1);
+	transition: background 2s ease-in;
+}
+body .sls-signup input[type="submit"]:hover{
+	background: linear-gradient(45deg,#ff8a00,#da1b60);
+}
+.error{
+	font-size: 0.9rem;
+	letter-spacing: 0px;
+	color: rgba(252, 119, 88);
+	margin-top: 2px;
+	margin-bottom: 10px;
+	font-family: lightPara;
+}
+.event{
+	width: 350px;
+	font-family: arial;
+	color: rgba(255, 255, 255, 1);
+	font-size: 0.9rem;
+	letter-spacing: 2px;
+	text-align: left;
+	margin: 20px 20px 0px 20px;
+	border: 2px solid rgba(230,230,230,0.7);
+	padding: 8px 3px 10px 30px;
+	border-radius: 5px;
+}
+.event p{
+	font-size: 0.8rem;
+	color: rgba(255, 255, 255, 0.9);
+	margin: 10px 20px 5px;
+}
+.event span{
+	font-size: 0.75rem;
+	margin: 40px;
+	letter-spacing: 0.5px;
+	color: rgba(255, 255, 255, 0.8);
+}
+.event input[type="checkbox" i]{
+	margin: 0px;
+	margin-top: 3px;
+	padding-top: 3px;
+	font-size: 0.65rem;
+}
+.event .refer {
+	font-size: 0.6rem;
+	padding-top: 0.8rem;
+	text-align: center;
+	color: rgba(240,240,240,0.4);
+}
+.event .refer a{
+	text-decoration: none;
+	letter-spacing: 0.5px;
+	color: #6b67e6;
+}
+.foot{
+	width: 100%;
+	color: rgba(255,255,255,0.4);
+	margin-bottom: 2rem;
+	margin-top: 2rem;
+	border-top: 0.8px solid #777;
+	padding: 2rem 3rem;
+}
+.foot .rightside{
+	position: relative;
+	width: calc(50vw - 3rem);
+	float: left;
+}
+.foot .rightside .sls-col-name{
+	font-size: 1.75rem;
+    letter-spacing: 1px;
+    font-family: calibri;
+    font-weight: bold;
+}
+.foot .rightside p , .foot .leftside p {
+	margin: 0px;
+	font-size: 0.9rem;
+	font-family: calibri;
+}
+.foot .rightside p a{
+	color: #6b67e6;
+	text-decoration: none;
+	font-weight: bold;
+}
+.foot .rightside p a .fas{
+	font-size: 10px;
+}
+.foot .leftside{
+	position: relative;
+	width: calc(50vw - 3rem);
+	float: right;
+	color: #ccc;
+	padding-top: 0.75rem;
+	text-align: center;
+	font-size: 1.1rem;
+}
+.foot .leftside ul{
+	list-style: none;
+	list-style-type: none;
+	display: inline;
+	margin: 0;
+	padding: 0px;
+}
+.foot .leftside ul li{
+	display: inline-block;
+}
+.foot .leftside ul li a{
+	text-decoration: none;
+	color: #ccc;
+}
+.foot .loc{
+	display: none;
+	visibility: hidden;
+}
+input:invalid {
+    border-color: red;
+}
+@media only screen and (max-width: 600px) {
+body::-webkit-scrollbar {
+    width: 0px;
+}
+body::-webkit-scrollbar-track {
+    background: #none;
+    -webkit-box-shadow:none;
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background:grey;
+  -webkit-box-shadow:none;
+  border-radius:0;
+}
+body .sls-header .sls-col-logo{
+	margin-left: 2vw;
+}
+body .sls-header .sls-col-logo img{
+	height: 45px;
+}
+body .sls-header .sls-col-name{
+	width: auto;
+	padding-left: 5px;
+	padding-top: 8px;
+	font-size: 2rem;
+}
+body .sls-header .sls-home{
+	font-size: 1.1rem;
+	width: auto;
+	right: 2.2vw;
+}
+body .sls-header .fa-home{
+	font-size: 0.75rem;
+	padding-top: 0.44rem;
+}
+body .sls-signup{
+	margin-left: 0;
+	padding: 8px;
+}
+body .sls-signup .signup-name{
+	font-size: 2.2rem;
+}
+body .sls-signup .sls-name{
+	margin: 10px 0px 0px 0px;
+	width: calc(100vw - 53px);
+}
+.error{
+	font-size: 0.8rem;
+}
+.event{
+	width: calc(100vw - 53px);
+	margin: 10px 0px 0px 0px;
+}
+body .sls-signup input[type="submit"]{
+	margin-bottom: 5vh;
+}
+.foot{
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 1rem;
+	width: calc( 100vw - 2rem);
+}
+.foot .rightside , .foot .leftside{
+	position: relative;
+	width: calc(100vw - 2rem);
+	float: none;
+}
+.foot .rightside .sls-col-name{
+	font-size: 1.25rem;
+    letter-spacing: 0px;
+}
+.foot .rightside p , .foot .leftside p {
+	font-size: 0.75rem;
+	text-align: center;
+}
+.foot .loc1{
+	display: none;
+	visibility: hidden;
+}
+.foot .loc{
+	display:inherit;
+	visibility: visible;
+	text-align: center;
+}
+.foot .loc a{
+
+	font-weight: bold !important;
+	margin-top: 3px;
+	font-size: 0.9rem;
+}
+}
