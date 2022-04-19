@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Events</title>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:700|Exo+2|Biryani:200,700,900|Raleway:400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ass/css/back.css">
+  <link rel="stylesheet" href="ass/css/navbar.css">
+
+<style type="text/css">
+	ul {
+    	font-family: 'Fugaz One', cursive;
+  	}
+	.head {
+		font-size: 3.5rem;
+		color: #fff;
+		margin-left: 3%;
+		font-family: 'Rubik', sans-serif;
+	}
+	.main-name{
+		margin-top: 5vh;
+		margin-bottom: 3vh;
+		font-size: 2.5rem;
+		color: #fff;
+		text-align: center;
+		font-weight: 200;
+		font-family: 'Biryani', sans-serif;
+		text-shadow: 3px 3px 6px #422;
+	}
+	.first-main{
+		margin-top: 0;
+	}
+	.main-name span{
+		font-weight: 700;
+		color: #fdfdfd;
+	}
+	.col-md-4{
+		padding:23px 40px;
+	}
+	.event{
+		height: 200px;
+		border-radius: 15px;
+		box-shadow: 3px 3px 20px #222;
+		background: linear-gradient(45deg,#43ffdd,#ff2299);
+		transition: transform 200ms ease-out;
+	}
+	.event:hover{
+		transform: scale(1.05,1.05);
+		text-decoration: none;
+	}
+	.event .duplicate{
+		position: relative;
+		padding: 1rem 1rem 1rem 2rem;
+		border-radius: 15px;
+		width: 100%;
+		height: 100%;
+		background: rgba(20,0,0,0.5);
+		transition: background 200ms linear;
+	}
+	.event:hover>.duplicate:hover{
+		background: rgba(100,0,0,0.7);
+	}
+	.event:hover .title{
+		text-decoration: none;
+	}
+	.event .title{
+		font-family: 'Exo 2', sans-serif;
+		margin-top: 110px;
+		font-weight: bolder;
+		font-size: 1.5rem;
+		letter-spacing: 3px;
+		color: #fff;
+	}
+	.event .desc{
+		margin-top: 5px;
+		font-size: 0.9rem;
+		color: rgba(255,255,255,0.5);
+	}
+	.overlaypop {
+	  position: fixed;
+	  top: 0px;bottom: 0px;left: 0px;right: 0px;
+	  background: rgba(0, 0, 0, 0.7);
+	  padding: 75px 150px;
+	  transition: opacity 0.5s;
+	  visibility: hidden;
+	  opacity: 0;
+	  z-index: 10;
+	}
+	.overlaypop:target {
+	  visibility: visible;
+	  opacity: 1;
+	  scroll-behavior: unset;
+	}
+	.popup {
+	  padding: 2rem 4rem;
+	  background: #feffee;
+	  border-radius: 15px;
+	  height: calc(100vh - 150px);
+	  position: relative;
+	  font-family: 'Raleway', sans-serif;
+	  transition: all 1s ease-in-out;
+	}
+	.popup h2 {
+	  font-size: 30px;
+	  font-family: 'Exo 2', sans-serif;
+	  text-align: center;
+	  margin: 10px 0px;
+	}
+	.popup .close {
+	  position: absolute;
+	  top: 10px;right: 40px;
+	  transition: all 200ms;
+	  font-size: 3rem;
+	  font-weight: bold;
+	  text-decoration: none;
+	  color: #000;
+	}
+	.popup .close:hover {
+	  color: #000;
+	}
+	.popup .content{
+		height: 50vh;
+		overflow-y: auto;
+		border: 2px solid gold;
+		padding: 2rem;
+	}
+	.popup .content h1{
+		font-size: 3rem;
+		text-align: center;
+		margin-top: 10vh;
+		color: rgba(0,2,4,0.3);
+	}
+	.popup .content h3{
+		font-weight: bold;
+		margin: 15px 0px;
+	}
+	.popup .content p{
+		font-weight: 500;
+		margin-left: 2rem;
+		line-height: 1.5rem;
+	}
+	.popup button{
+		margin-top: 3vh;
+	}
+	a:hover {
+		outline: none;
+		text-decoration: none;
+	}
+	@media screen and (max-width: 500px){
+		.main-name{
+			margin-top: 6vh;
+			font-size: 1.85rem;
+		}
+		.first-main{
+			margin-top: 2vh;
+		}
+		.col-md-4{
+			padding:8px 15px;
+		}
+		.event{
+			height: 180px;
+			border-radius: 10px;
+		}
+		.event .duplicate{
+			border-radius: 10px;
+		}
+		.event .title{
+			margin-top: 95px;
+			font-weight: bold;
+		}
+		.overlaypop {
+		  padding: 45px 3px 10px 3px;
+		}
+		.popup {
+		  padding:0.5rem;
+		  height: calc(100vh - 60px);
+		}
+		.popup h2 {
+		  margin: 15px 0px 20PX;
+		}
+		.popup .close {
+		  top: 10px;right: 18px;
+		  font-size: 2.75rem;
+		}
+		.popup .content{
+			height: 70vh;
+			padding: 1rem;
+		}
+		.popup .content h1{
+			font-size: 1rem;
+			margin-top: 15vh;
+			color: rgba(0,2,4,0.6);
+		}
+	}
+</style>
+</head>
+<body>
+	<a href="#navigation" class="nav-trigger">
+   		Menu<span></span>
+  	</a>
+	<div class="bg"> <div></div> <div></div> <div></div> </div> 
+	<main>
+		<section class="intro">
+			<div class="head"><img width="100" height="100"src="imgs/eee 1.png"></div>
+
+			<div class="main-name first-main"><span>TECHNICAL</span>&nbsp; EVENTS</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<a href="#popupT1">
+							<div class="event">
+								<div class="duplicate">
+									<p class="title">On The Dias</p>
+									<p class="desc">Paper Presentaion</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="#popupT2">
+							<div class="event">
+								<div class="duplicate">
+									<p class="title">Electrovation</p>
+									<p class="desc">Project Display</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="#popupT3">
+							<div class="event">
+								<div class="duplicate">
+									<p class="title">Enquizta</p>
+									<p class="desc">Tech Quiz</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-4">
+						<a href="#popupT4">
+							<div class="event">
+								<div class="duplicate">
+									<p class="title">Circuit Detective</p>
+									<p class="desc">Debugging</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="#popupT5">
+							<div class="event">
+								<div class="duplicate">
+									<p class="title">Seek & Patch</p>
+									<p class="desc">Join the Circuit</p>
+								</div>								
+							</div>
+						</a>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+			</div>
+			<div class="main-name"><span>NON-TECHNICAL</span>&nbsp; EVENTS</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<a href="#popupT6">
+							<div class="event">
+								<div class="duplicate">
+									<p class="title">Kick the Goal</p>
+									<p class="desc">Football</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="#popupT7">
+							<div class="event">
+								<div class="duplicate">
+									<p class="title">Photografia</p>
+									<p class="desc">Click the moment</p>
+								</div>						
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="#popupT8">
+							<div class="event">
+								<div class="duplicate">
+									<p class="title">Pubg</p>
+									<p class="desc">Gaming</p>
+								</div>							
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-4">
+						<a href="#popupT9">
+							<div class="event">
+								<div class="duplicate">
+									<p class="title">Non Sync</p>
+									<p class="desc">Talk...Sense...No...</p>
+								</div>					
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="#popupT10">
+							<div class="event">
+								<div class="duplicate">
+									<p class="title">Surprise Events</p>
+									<p class="desc">Brace Your Eager</p>
+								</div>							
+							</div>
+						</a>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+			</div>
+			<div class="main-name"><span>WORKSHOP</span></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<a href="#popupT11">
+							<div class="event">
+								<div class="duplicate">
+									<p class="title">New Energy Workshop</p>
+									<p class="desc">Solar & Wind Energy</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+			<br><br><br>
+
+			<div id="popupT1" class="overlaypop">
+				<div class="popup">
+					<h2>ON THE DIAS</h2>
+					<a class="close" href="#">&times;</a>
+					<div class="content">
+					 	<h3>DESCRIPTION :</h3>
+					 	<p>
+					 	Express your ideas through presentation<br>
+					 	&#9679; AI(Artificial Intelligence)<br>
+					 	&#9679; Machine learning<br>
+					 	&#9679; Renewable Energy Sources<br>
+					 	&#9679; Non-Renewable Energy Sources<br>
+					 	&#9679; Automation(IoT)<br>
+					 	&#9679; Green power(Energy) from green plants<br>
+					 	&#9679; Networking<br>
+					 	&#9679; Embedded Systems<br><br></p>
+					
+						<h3>RULES :</h3>
+						<p>
+						1. A team can consist of 2 members in total. <br>
+						2. Participants are requested to be present at the allocated room, 30mins prior to the event starting time. <br>
+						3. Participants must have a hard-copy and so soft-copy of their presentation.<br>
+						4. Electronic equipments such as Laptop, Pendrive must be brought by the Participants.<br>
+						5. A team will be allotted 15-20 minutes each<br></p>
+
+						<h3>Mail Id :</h3>
+						impulse.eee2k19@gmail.com
+
+						<h3>Contact :</h3>
+						Name : ARUN BABU R.S. <br>
+						Number :  8428808630
+
+					</div>
+					<center>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">
+							<button class="btn btn-primary">Register</button>
+						</a>
+					</center>
+				</div>
+			</div>
+
+			<div id="popupT2" class="overlaypop">
+				<div class="popup">
+					<h2>ELECTROVATION</h2>
+					<a class="close" href="#">&times;</a>
+					<div class="content">
+					 	<h3>DESCRIPTION :</h3>
+					 	<p>
+					 	Electrovation is a platform where you can exhibit the prototype of your innovative ideas. <br></p>
+					
+						<h3>RULES :</h3>
+						<p>
+						1. A team can consist of 3 members.<br>
+						2. A member of particular team cannot participate in another team.<br>
+						3. Multiple projects can be exhibited by a team.<br>
+						4. Participants are asked to reach the allotted room/lab 30mins prior to the starting time of the event to set up their projects.<br><br></p>
+
+
+						<h3>Mail Id :</h3>
+						impUlse.2k19@gmail.com
+						<h3>Contact :</h3>
+						Name : VIJAY GANESH M.<br>
+						Number :  9994425263
+					</div>
+
+					<center>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">
+							<button class="btn btn-primary">Register</button>
+						</a>
+					</center>
+				</div>
+			</div>
+
+			<div id="popupT3" class="overlaypop">
+				<div class="popup">
+					<h2>ENQUIZTA</h2>
+					<a class="close" href="#">&times;</a>
+					<div class="content">
+					 	<h3>DESCRIPTION :</h3>
+					 	<p>
+					 	Put your electrical and electronics knowledge to test with our objective type questions and rapid fire rounds. <br></p>
+					 	<h3>Number of rounds: 3</h3><br>
+					
+						<h3>RULES :</h3>
+						<p>
+						1. A team can consist of only two members.<br>
+						2. Discussion between neighbouring teams is not permitted.<br>
+						3. Mobile phones are strictly prohibited.<br>
+						4.  Answering time per questions will be 30seconds for round 2&3.<br>
+						5. For a right answer 4 marks will be awarded and for a wrong answer 1 mark will be reduced.<br>
+						6. Replacing of team members after registration is not allowed.<br></p>
+
+
+						<h3>Mail Id :</h3>
+						impulse.eee2k19@gmail.com
+
+						<h3>Contact :</h3>
+						Name : SRIRAM M.N.<br>
+						Number :  9003244564
+					</div>
+					<center>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">
+							<button class="btn btn-primary">Register</button>
+						</a>
+					</center>
+				</div>
+			</div>
+
+			<div id="popupT4" class="overlaypop">
+				<div class="popup">
+					<h2>CIRCUIT DETECTIVE</h2>
+					<a class="close" href="#">&times;</a>
+					<div class="content">
+					 	<h3>DESCRIPTION :</h3>
+					 	<p>
+					 	It consists of 3 rounds. 1st round will be MCQ questions,2nd round will be quiz round, Final round will be Circuit designing Round. </p>
+					
+						<h3>RULES :</h3>
+						<p>
+						1. A team consists of maximum 3 members.<br>
+						2. First round has 30 MCQ questions which are from core.<br>
+						3. Based on marks scored, Shortlisted teams are eligible to take part in 2nd round which is Quiz round.<br>
+						4. In second round 15 questions will be asked which are from core.<br>
+						5. Based on performance, some team are shortlisted for third round.<br>
+						6. Third round consist of circuit designing, teams should design the circuits with provided components.<br></p>
+
+
+						<h3>Mail Id :</h3>
+						impulse.eee2k19@gmail.com
+
+						<h3>Contact :</h3>
+						Name : THULASI K.<br>
+						Number :  7825974033
+					</div>
+					<center>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">
+							<button class="btn btn-primary">Register</button>
+						</a>
+					</center>
+				</div>
+			</div>
+
+			<div id="popupT5" class="overlaypop">
+				<div class="popup">
+					<h2>SEEK & PATCH</h2>
+					<a class="close" href="#">&times;</a>
+					<div class="content">
+					 	<h3>DESCRIPTION :</h3>
+					 	<p>Get ready to explore the hidden treasures and bring out the Sherlock Holmes in you.</p>
+					
+						<h3>RULES :</h3>
+						<p>
+						1. A team can consist of 2-3 members.<br>
+						2. Mobile phones are strictly prohibited.<br>
+						3. Tasks must be finished within the provided Time Limit.<br></p>
+
+
+						<h3>Mail Id :</h3>
+						impulse.eee2k19@gmail.com
+
+						<h3>Contact :</h3>
+						Name : ANANDHA SAI KUMAR P.K.R.<br>
+						Number :  9566064633
+					</div>
+					<center>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">
+							<button class="btn btn-primary">Register</button>
+						</a>
+					</center>
+				</div>
+			</div>
+
+			<div id="popupT6" class="overlaypop">
+				<div class="popup">
+					<h2>Kick The Goal (football)</h2>
+					<a class="close" href="#">&times;</a>
+					<div class="content">
+						
+					 	<h3>DESCRIPTION :</h3> <p>SOCCER MADNESS
+					 	</p> <h3>RULES :</h3> <p> 1. Fours Futsal<br> 2. Timing 5 - 2 - 5<br> 3. Keeper not allowed to take the ball in hands.<br> 4. No kit will be provided.<br> 5. ID card compulsory<br> 6. Entry fees Rs. 50 for a team</p> 
+					 
+					 <h3>Mail Id :</h3>
+						impulse.eee2k19@gmail.com
+
+					 <h3>Contact :</h3>
+						Name : DHEERAJ<br>
+						Number :   7448877075</div>
+					<center>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">
+							<button class="btn btn-primary">Register</button>
+						</a>
+					</center>
+				</div>
+			</div>
+
+			<div id="popupT7" class="overlaypop">
+				<div class="popup">
+					<h2>PHOTOGRAFIA</h2>
+					<a class="close" href="#">&times;</a>
+					<div class="content">
+					 	<h3>DESCRIPTION :</h3>
+					 	<p>
+					 	Hey Guys! Get ready to show the hidden skills and bring out the best photographer in you, to build your photography skills and to show the best photographers in you to the world.</p>
+					
+						<h3>RULES :</h3>
+						<p>
+						1. A team can have maximum of 2 members.<br>
+						2. Participants can use digital camera/mobile camera to capture photos.<br>
+						3. Team should not use filters or any editing on the pictures.<br>
+						4. Team can bring their photos through memory cards or any storage devices.<br>
+						5. Photos will be shortlisted. <br>
+
+						</p>
+					
+					<h3>Mail Id :</h3>
+						impulse.eee2k19@gmail.com
+
+					<h3>Contact :</h3>
+						Name : KRISHNA MOHAN<br>
+						Number :  9491660968
+					</div><center>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">
+							<button class="btn btn-primary">Register</button>
+						</a>
+					</center>
+				</div>
+			</div>
+
+			<div id="popupT8" class="overlaypop">
+				<div class="popup">
+					<h2>PUBG</h2>
+					<a class="close" href="#">&times;</a>
+					<div class="content">
+						<h1>WE WILL UPDATE SOON... .. .</h1>
+					 	<!-- <h3>DESCRIPTION :</h3>
+					 	<p>jdkljdkljfdalkjdklf</p>
+						<h3>RULES :</h3>
+						<p>dsdfsdfdgsdg</p> -->
+					
+					<h3>Mail Id :</h3>
+						impulse.eee2k19@gmail.com
+
+					<h3>Contact :</h3>
+						Name : SUBASH CHANDRA BOSE V. <br>
+						Number :  8903412543
+					</div><center>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">
+							<button class="btn btn-primary">Register</button>
+						</a>
+					</center>
+				</div>
+			</div>
+
+			<div id="popupT9" class="overlaypop">
+				<div class="popup">
+					<h2>NON-SYNC</h2>
+					<a class="close" href="#">&times;</a>
+					<div class="content">
+					 	<h3>DESCRIPTION :</h3>
+					 	<p>Asking questions are always easy but answering them is going to be little tricky. Your task is to not give the right answer to the questions.</p>
+					 	<br>
+					 	<h3>Number of rounds: 1</h3><br>
+						<h3>RULES :</h3>
+						<p>
+							1. Individual Participation is only allowed.<br>
+							2. Time allotted for each participant is 1 minute.<br>
+							3. Your answer must not be another question.<br>
+							4. Repetition of the same words or sentence is not allowed.<br></p>
+					
+					<h3>Mail Id :</h3>
+						impulse.eee2k19@gmail.com
+
+					<h3>Contact :</h3>
+						Name : JAYA SWARNA ABHINAYA B <br>
+						Number :  8608223582
+					</div><center>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">
+							<button class="btn btn-primary">Register</button>
+						</a>
+					</center>
+				</div>
+			</div>
+
+			<div id="popupT10" class="overlaypop">
+				<div class="popup">
+					<h2>SURPRISE EVENT</h2>
+					<a class="close" href="#">&times;</a>
+					<div class="content">
+						<h1>WE WILL UPDATE SOON... .. .</h1>
+					 	<!-- <h3>DESCRIPTION :</h3>
+					 	<p>jdkljdkljfdalkjdklf</p>
+						<h3>RULES :</h3>
+						<p>dsdfsdfdgsdg</p> -->
+					
+					<h3>Mail Id :</h3>
+						impulse.eee2k19@gmail.com
+
+					<h3>Contact :</h3>
+						Name : DINESH A.<br>
+						Number :  7092023833
+					</div><center>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">
+							<button class="btn btn-primary">Register</button>
+						</a>
+					</center>
+				</div>
+			</div>
+
+			<div id="popupT11" class="overlaypop">
+				<div class="popup">
+					<h2>NEW ENERGY WORKSHOP</h2>
+					<a class="close" href="#">&times;</a>
+					<div class="content">
+					 	<h3>DESCRIPTION :</h3>
+					 	<p>This workshop provides you with industry level guidance and experience in operation & installation of New Energy setup</p><br><br>
+						<h3>ENTRY FEE : Rs. 100/- PER MEMBER</h3>
+					
+					<h3>Mail Id :</h3>
+						impulse.eee2k19@gmail.com
+
+					<h3>Contact :</h3>
+						Name : BALAJI T.<br>
+						Number :  8637424140
+					</div><center>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">
+							<button class="btn btn-primary">Register</button>
+						</a>
+					</center>
+				</div>
+			</div>
+
+			
+		</section>
+	</main>
+	<nav class="nav-container" id="navigation">
+		<header>
+			<h2>&nbsp;</h2>
+		</header>
+
+		<ul class="nav">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="events.html">Event</a></li>
+			<li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdcZo-aaftuuQbP8k0kLjeOZJ7DKfQbBRvPQStDRpfS96aOgw/viewform?embedded=true" target="_blank">Register</a></li>
+			<li><a href="contact.html">Contact</a></li>
+			<li><a href="#" style="color: rgba(255,255,255,0.4);background: transparent !important;">Sponser</a></li>
+		</ul>
+	</nav>
+	<div class="overlay"></div>
+
+
+<script  src="ass/js/navscript.js"></script>
+
+</body>
+</html>
